@@ -4,16 +4,22 @@ import { LoginComponent } from './login/login.component';
 import { SidebarNavComponent } from './sidebar-nav/sidebar-nav.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { IncomeComponent } from './income/income.component';
+import { ExpenseComponent } from './expense/expense.component';
+import { TodoComponent } from './todo/todo.component';
+import { HistoryComponent } from './history/history.component';
 
 const routes: Routes = [
-  {path: 'login', component: LoginComponent},
-  { path: 'sidebar-nav', component: SidebarNavComponent},
-  { path: 'dashboard', component: DashboardComponent},
-  { path: 'income', component:IncomeComponent},
+  { path: 'login', component: LoginComponent },
+  { path: 'sidebar-nav', component: SidebarNavComponent },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'income', component: IncomeComponent },
+  { path: 'expense', component: ExpenseComponent },
+  { path: 'todo', component: TodoComponent },
+  { path: 'history', component: HistoryComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class BudgetPlannerRoutingModule { }
+export class BudgetPlannerRoutingModule {}

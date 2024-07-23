@@ -10,7 +10,7 @@
   </div>
   <form [formGroup]="incomeForm" class="input-form" (ngSubmit)="onSubmit()">
     <div class="form-group">
-      <select formControlName="month" id="month" class="form-control" change="onChange($event)" title="Select Month">
+      <select formControlName="month" id="month" class="form-control" (change)="onChange($event)" title="Select Month">
         <option value="" disabled>Select Month</option>
         <option *ngFor="let month of months" [value]="month">{{ month }}</option>
       </select>

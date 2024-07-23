@@ -9,14 +9,24 @@ import Toastify from 'toastify-js';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './income.component.html',
-  styleUrl: './income.component.scss'
+  styleUrl: './income.component.scss',
 })
 export class IncomeComponent {
   incomeForm: any;
   selectedMonth: any;
   months: string[] = [
-    'January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December'
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
   ];
   januaryIncomes: any[] = [
     { source: 'Salary', amount: 5000, investments: '200(k)' },
@@ -68,24 +78,26 @@ export class IncomeComponent {
     { source: 'Salary', amount: 5400, investments: '200(k)' },
     { source: 'Freelancing', amount: 1300, investments: 'Stocks' },
   ];
-  monthSelected:boolean=false;
+  monthSelected: boolean = false;
 
-  constructor(public Income:FormBuilder, public router:Router) {
+  constructor(public Income: FormBuilder, public router: Router) {
     const currentDate = new Date();
-    this.selectedMonth = currentDate.toLocaleString('default', { month: 'long' });
+    this.selectedMonth = currentDate.toLocaleString('default', {
+      month: 'long',
+    });
   }
-  ngOnInit(){
+  ngOnInit() {
     this.incomeForm = this.Income.group({
       month: ['', Validators.required],
       source: ['', Validators.required],
       amount: ['', Validators.required],
-      investments: ['', Validators.required]
-    })
+      investments: ['', Validators.required],
+    });
   }
 
   calculateTotalIncome(incomes: string): number {
     let totalIncome = 0;
-    for(const income of this.getIncomesForMonth(incomes)){
+    for (const income of this.getIncomesForMonth(incomes)) {
       totalIncome += income.amount;
     }
     return totalIncome;
@@ -171,10 +183,11 @@ export class IncomeComponent {
     this.incomeList();
   }
 
-  onSubmit(){
-    if(this.incomeForm.valid){
+  onSubmit() {
+    if (this.incomeForm.valid) {
       const newIncomeAdd = this.incomeForm.value;
-      switch (this.selectedMonth){
+      console.log(newIncomeAdd, "New income added");
+      switch (this.selectedMonth) {
         case 'January':
           this.januaryIncomes.push(newIncomeAdd);
           break;
@@ -215,24 +228,45 @@ export class IncomeComponent {
           break;
       }
       this.incomeForm.reset();
-      this.incomeForm.patchValue({ month: '', source: '', amount: '', investments: '' });
+      this.incomeForm.patchValue({
+        month: '',
+        source: '',
+        amount: '',
+        investments: '',
+      });
       Toastify({
-        text: "Income added successfully",
+        text: 'Income added successfully',
         duration: 3000,
-        gravity: "top",
-        position: "right",
-        backgroundColor: "#4CAF50"
+        gravity: 'top',
+        position: 'right',
+        backgroundColor: '#4CAF50',
+        style: {
+          background: '#4CAF50',
+          color: 'white',
+          fontSize: '16px',
+          borderRadius: '8px',
+          padding: '16px',
+          textAlign: 'center',
+        },
       }).showToast();
     }
   }
 
   saveForm() {
     Toastify({
-      text: "Form saved successfully",
+      text: 'Form saved successfully',
       duration: 3000,
-      gravity: "top",
-      position: "right",
-      backgroundColor: "#4CAF50"
+      gravity: 'top',
+      position: 'right',
+      backgroundColor: '#4CAF50',
+      style: {
+        background: '#4CAF50',
+        color: 'white',
+        fontSize: '16px',
+        borderRadius: '8px',
+        padding: '16px',
+        textAlign: 'center',
+      },
     }).showToast();
   }
   onBack() {
